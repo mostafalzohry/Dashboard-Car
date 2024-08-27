@@ -98,11 +98,8 @@ const CarRecommendation: React.FC<CarRecommendationProps> = ({
 );
 
 const Home: React.FC = () => (
-  <div className="flex">
-    <SideNavbar />
-    <div className="flex-1">
-      <Navbar />
-      <main className="p-8">
+
+  <>
         <section className="grid grid-cols-4 gap-6 mb-8">
           {HeroCards.map((card) => (
             <HeroCard {...card} />
@@ -145,9 +142,8 @@ const Home: React.FC = () => (
             recommendPercent={74}
           />
         </div>
-      </main>
-    </div>
-  </div>
+        </>
+
 );
 
 export default Home;
