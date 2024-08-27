@@ -1,11 +1,8 @@
+import HeroCard from "@/Components/HeroCard";
+import SideNavbar from "@/Components/SideNavBar";
 import React from "react";
 
-interface StatCardProps {
-  title: string;
-  value: string;
-  color: string;
-  icon: React.ReactNode;
-}
+
 
 interface AchievementCardProps {
   title: string;
@@ -21,29 +18,41 @@ interface CarRecommendationProps {
   recommendPercent: number;
 }
 
-const Sidebar: React.FC = () => (
-  <div className="w-64 h-screen bg-white border-r">
-    <div className="p-4">
-      <h1 className="text-2xl font-bold text-purple-600">Motiv.</h1>
-    </div>
-    <nav className="mt-8">
-      <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">
-        Dashboard
-      </a>
-      <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">
-        Cars
-      </a>
-    </nav>
-    <div className="absolute bottom-0 w-64 p-4">
-      <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">
-        Settings
-      </a>
-      <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">
-        Log out
-      </a>
-    </div>
-  </div>
-);
+
+const HeroCards = [
+  {
+    progressColor: "#FFFFFF",
+    textColor: "#FFFFFF",
+    title: "Energy",
+    iconPath: "energyicon.svg",
+    percent: 70,
+    backgroundColor: "linear-gradient(#A162F7, #A162F7), linear-gradient(80deg, white 40%, lightgrey 30%)", 
+  },
+  {
+    progressColor: "#FF7E86",
+    textColor: "#242731",
+    title: "Range",
+    iconPath: "rangicon.svg",
+    percent: 15,
+    backgroundColor: "#FFFFFF",
+  },
+  {
+    progressColor: "#A162F7",
+    textColor: "#242731",
+    title: "Break fluid",
+    iconPath: "breakicon.svg",
+    percent: 9,
+    backgroundColor: "#FFFFFF",
+  },
+  {
+    progressColor: "#F6CC0D",
+    textColor: "#242731",
+    title: "Tire Wear",
+    iconPath: "tiericon.svg",
+    percent: 25,
+    backgroundColor: "#FFFFFF",
+  },
+];
 
 const Header: React.FC = () => (
   <header className="flex justify-between items-center p-4 bg-white border-b">
@@ -63,13 +72,7 @@ const Header: React.FC = () => (
   </header>
 );
 
-const StatCard: React.FC<StatCardProps> = ({ title, value, color, icon }) => (
-  <div className={`p-6 rounded-lg ${color}`}>
-    <div className="mb-4">{icon}</div>
-    <h3 className="text-xl font-bold">{title}</h3>
-    <div className="mt-4 text-3xl font-bold">{value}</div>
-  </div>
-);
+
 
 const CarLoanBanner: React.FC = () => (
   <div className="bg-yellow-100 p-6 rounded-lg flex justify-between items-center">
@@ -117,36 +120,16 @@ const CarRecommendation: React.FC<CarRecommendationProps> = ({
 
 const Home: React.FC = () => (
   <div className="flex">
-    <Sidebar />
+    <SideNavbar />
     <div className="flex-1">
       <Header />
       <main className="p-8">
-        <div className="grid grid-cols-4 gap-6 mb-8">
-          <StatCard
-            title="Energy"
-            value="45%"
-            color="bg-purple-500"
-            icon={<span>⚡</span>}
-          />
-          <StatCard
-            title="Range"
-            value="157k%"
-            color="bg-red-100"
-            icon={<span>🚗</span>}
-          />
-          <StatCard
-            title="Break fluid"
-            value="9%"
-            color="bg-blue-100"
-            icon={<span>💧</span>}
-          />
-          <StatCard
-            title="Tire Wear"
-            value="25%"
-            color="bg-yellow-100"
-            icon={<span>🔧</span>}
-          />
-        </div>
+     
+         <section className="grid grid-cols-4 gap-6 mb-8">
+            {HeroCards.map((card) => (
+              <HeroCard {...card} />
+            ))}
+          </section>
         <div className="grid grid-cols-3 gap-6 mb-8">
           <div className="col-span-2">
             <CarLoanBanner />
