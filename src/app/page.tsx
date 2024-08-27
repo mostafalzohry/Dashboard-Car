@@ -1,8 +1,7 @@
 import HeroCard from "@/Components/HeroCard";
+import Navbar from "@/Components/NavBar";
 import SideNavbar from "@/Components/SideNavBar";
 import React from "react";
-
-
 
 interface AchievementCardProps {
   title: string;
@@ -18,7 +17,6 @@ interface CarRecommendationProps {
   recommendPercent: number;
 }
 
-
 const HeroCards = [
   {
     progressColor: "#FFFFFF",
@@ -26,7 +24,8 @@ const HeroCards = [
     title: "Energy",
     iconPath: "energyicon.svg",
     percent: 70,
-    backgroundColor: "linear-gradient(#A162F7, #A162F7), linear-gradient(80deg, white 40%, lightgrey 30%)", 
+    backgroundColor:
+      "linear-gradient(#A162F7, #A162F7), linear-gradient(80deg, white 40%, lightgrey 30%)",
   },
   {
     progressColor: "#FF7E86",
@@ -53,26 +52,6 @@ const HeroCards = [
     backgroundColor: "#FFFFFF",
   },
 ];
-
-const Header: React.FC = () => (
-  <header className="flex justify-between items-center p-4 bg-white border-b">
-    <div className="flex-1">
-      <input
-        type="text"
-        placeholder="Search or type"
-        className="w-full px-4 py-2 rounded-full bg-gray-100"
-      />
-    </div>
-    <div className="flex items-center">
-      <button className="mx-2">
-        <img src="/bell-icon.svg" alt="Notifications" />
-      </button>
-      <img src="/avatar.jpg" alt="User" className="w-10 h-10 rounded-full" />
-    </div>
-  </header>
-);
-
-
 
 const CarLoanBanner: React.FC = () => (
   <div className="bg-yellow-100 p-6 rounded-lg flex justify-between items-center">
@@ -122,14 +101,13 @@ const Home: React.FC = () => (
   <div className="flex">
     <SideNavbar />
     <div className="flex-1">
-      <Header />
+      <Navbar />
       <main className="p-8">
-     
-         <section className="grid grid-cols-4 gap-6 mb-8">
-            {HeroCards.map((card) => (
-              <HeroCard {...card} />
-            ))}
-          </section>
+        <section className="grid grid-cols-4 gap-6 mb-8">
+          {HeroCards.map((card) => (
+            <HeroCard {...card} />
+          ))}
+        </section>
         <div className="grid grid-cols-3 gap-6 mb-8">
           <div className="col-span-2">
             <CarLoanBanner />
