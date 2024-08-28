@@ -86,49 +86,51 @@ const EarnCards = [
     imagePath: "oldMan.png",
   },
 ];
+
+
 const Home: React.FC = () => (
   <>
-    <section className="grid grid-cols-4 gap-6 mb-8">
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       {HeroCards.map((card) => (
-        <HeroCard {...card} />
+        <HeroCard key={card.title} {...card} />
       ))}
     </section>
 
-    <section className="mx-5 flex mobile:flex-col lg:flex-row justify-center mobile:p-2 lg:p-4 mobile:gap-4 lg:gap-0">
-      <div className="lg:w-[540px] lg:h-[222px] mobile:p-4 bg-[#FFE0BA] flex  lg:flex-row justify-between items-center lg:px-4  rounded-md">
-        <div>
-          <h4 className="text-[24px] text-[#0F2837] font-[ABeeZee]">
-            Apply for a car loan !
+    <section className="flex flex-col lg:flex-row justify-center gap-4 p-2 lg:p-4">
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:w-[540px] lg:h-[222px] p-4 bg-[#FFE0BA] rounded-md">
+        <div className="text-center lg:text-left mb-4 lg:mb-0">
+          <h4 className="text-[20px] lg:text-[24px] text-[#0F2837] font-[ABeeZee]">
+            Apply for a car loan!
           </h4>
-          <span className="text-[16px] text-[#0F2837] ">
-            This is a sample of a generated <br />
-            text
+          <span className="text-[14px] lg:text-[16px] text-[#0F2837]">
+            This is a sample of a generated text
           </span>
-          <button className="bg-[#0F2837] h-[38px] w-[126px] mt-2 rounded-md text-[12px] text-[#FFFFFF] flex justify-center items-center">
+          <button className="bg-[#0F2837] h-[38px] w-[126px] mt-2 rounded-md text-[12px] lg:text-[14px] text-[#FFFFFF] flex justify-center items-center">
             Discover More
           </button>
         </div>
         <div>
           <img
-            className="h-[185.83px] w-[226.11px]"
+            className="h-[150px] lg:h-[185.83px] w-[auto] lg:w-[226.11px]"
             src="./desk.png"
             alt="desk"
           />
         </div>
       </div>
-      <div className="flex  lg:mx-2">
+      <div className="flex flex-wrap justify-center lg:justify-start gap-4 lg:mx-2">
         {EarnCards.map((card) => (
-          <SecondSectionCardAtDashbord {...card} />
+          <SecondSectionCardAtDashbord key={card.highlightText} {...card} />
         ))}
       </div>
     </section>
 
-    <div className="grid grid-cols-3 gap-6">
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {RecommendedCars.map((card) => (
-        <RecommendedCar {...card} />
+        <RecommendedCar key={card.text} {...card} />
       ))}
-    </div>
+    </section>
   </>
 );
+
 
 export default Home;
