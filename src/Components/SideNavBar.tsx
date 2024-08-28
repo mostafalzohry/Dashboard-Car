@@ -1,9 +1,11 @@
-
 "use client";
+import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const SideNavbar: React.FC = () => {
+  const { t } = useTranslation();
   const currentPath = usePathname();
 
   return (
@@ -21,7 +23,7 @@ const SideNavbar: React.FC = () => {
                 currentPath === "/" ? "bg-[#F3F5F8]" : ""
               }`}>
                 <img className="h-6 w-6" src="./dashboard icon.svg" alt="dashboard icon" />
-                <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">dashboard</span>
+                <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">{t("dashboard")}</span>
               </div>
             </Link>
 
@@ -30,7 +32,7 @@ const SideNavbar: React.FC = () => {
                 currentPath === "/cars" ? "bg-[#F3F5F8]" : ""
               }`}>
                 <img className="h-6 w-6" src="./cars icon.svg" alt="cars icon" />
-                <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">cars</span>
+                <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">{t("cars")}</span>
               </div>
             </Link>
           </div>
@@ -38,12 +40,12 @@ const SideNavbar: React.FC = () => {
           <div>
             <div className="flex items-center mt-11 p-2 rounded-md cursor-pointer">
               <img className="h-6 w-6" src="./settingicon.svg" alt="setting icon" />
-              <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">settings</span>
+              <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">{t("settings")}</span>
             </div>
 
             <div className="flex items-center mt-2 p-2 rounded-md cursor-pointer">
               <img className="h-6 w-6" src="./logouticon.svg" alt="log out icon" />
-              <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">log out</span>
+              <span className="hidden sm:inline text-[#5F6165] text-base font-medium ml-2">{t("logout")}</span>
             </div>
           </div>
         </nav>

@@ -1,5 +1,8 @@
 {
  
-    "search":"search"
-
+    "search":"search",
+    "logout": "Log out",
+    "settings": "Settings",
+    "cars": "Cars",
+    "dashboard": "Dashboard"
   }
