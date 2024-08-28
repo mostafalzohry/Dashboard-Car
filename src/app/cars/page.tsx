@@ -27,6 +27,7 @@ const Cars = () => {
   const [transmissions, setTransmissions] = useState<string[]>([]);
   const [selectedMake, setSelectedMake] = useState<string>("");
   const [selectedTransmission, setSelectedTransmission] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [carsPerPage] = useState<number>(9);
   const [loading, setLoading] = useState<boolean>(true);
@@ -93,9 +94,22 @@ const Cars = () => {
     setCurrentPage(1);
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = event.target.value.toLowerCase();
+    setSearchTerm(searchValue);
+    const filteredCars = originalCars.filter(
+      (car) =>
+        car.title.toLowerCase().includes(searchValue) ||
+        car.type.toLowerCase().includes(searchValue)
+    );
+    setCars(filteredCars);
+    setCurrentPage(1);
+  };
+
   const clearFilter = () => {
     setSelectedMake("");
     setSelectedTransmission("");
+    setSearchTerm("");
     setCars(originalCars);
     setCurrentPage(1);
   };
@@ -120,13 +134,15 @@ const Cars = () => {
         <h1 className="my-4 text-[#242731] text-[30px] font-[700]">Booking</h1>
       </header>
 
+  
+
       <nav className="mt-10 flex flex-col lg:flex-row justify-between items-center">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-[23px]">
           <div className="relative">
             <select
               value={selectedMake}
               onChange={(e) => filterCarsByMake(e.target.value)}
-              className="bg-white cursor-pointer w-[200px] h-[48px] rounded-full px-4 py-2 appearance-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+              className="bg-white cursor-pointer w-[220px] h-[48px] rounded-full px-4 py-2 appearance-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
             >
               <option value="">Select Make</option>
               {makes.map((make) => (
@@ -145,11 +161,12 @@ const Cars = () => {
               </svg>
             </div>
           </div>
+      
           <div className="relative">
             <select
               value={selectedTransmission}
               onChange={(e) => filterCarsByTransmission(e.target.value)}
-              className="bg-white cursor-pointer w-[200px] h-[48px] rounded-full px-4 py-2 appearance-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+              className="bg-white cursor-pointer w-[220px] h-[48px] rounded-full px-4 py-2 appearance-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
             >
               <option value="">Select Transmission</option>
               {transmissions.map((transmission) => (
@@ -168,8 +185,15 @@ const Cars = () => {
               </svg>
             </div>
           </div>
+          <input
+            type="text"
+            placeholder="Search by Make or Model"
+            value={searchTerm}
+            onChange={handleSearch}
+            className="bg-white cursor-pointer w-[230px] h-[48px] rounded-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
           <button
-            className="bg-white cursor-pointer w-[200px] h-[48px] rounded-full px-4 py-2 border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-white cursor-pointer w-[220px] h-[48px] rounded-full px-4 py-2 border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onClick={clearFilter}
           >
             Clear Filter
@@ -191,7 +215,6 @@ const Cars = () => {
           />
         </div>
       </nav>
-
       <section className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:gap-6 mt-16">
         {currentCars.length > 0 ? (
           <>
