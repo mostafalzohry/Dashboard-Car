@@ -1,22 +1,7 @@
 import HeroCard from "@/Components/HeroCard";
-import Navbar from "@/Components/NavBar";
 import RecommendedCar from "@/Components/RecommendedCar";
-import SideNavbar from "@/Components/SideNavBar";
+import SecondSectionCardAtDashbord from "@/Components/EarnCards";
 import React from "react";
-
-interface AchievementCardProps {
-  title: string;
-  value: string;
-  icon: React.ReactNode;
-  color: string;
-}
-
-interface CarRecommendationProps {
-  image: string;
-  name: string;
-  stats: string[];
-  recommendPercent: number;
-}
 
 const HeroCards = [
   {
@@ -65,8 +50,7 @@ const RecommendedCars = [
   {
     backgroundColor: "#E3ECF1",
     title: "74% Recommend",
-    imgCarPath:
-      "./Porsche.png",
+    imgCarPath: "./Porsche.png",
     text: "Porsche 911 Carrera",
     kiloMeter: "130K",
     kiloMeterByHour: "$28/h",
@@ -74,91 +58,77 @@ const RecommendedCars = [
   {
     backgroundColor: "#F4E3E5",
     title: "74% Recommend",
-    imgCarPath:
-      "./Porsche2.png",
+    imgCarPath: "./Porsche2.png",
     text: "Porsche 911 Carrera",
     kiloMeter: "130K",
     kiloMeterByHour: "$28/h",
   },
 ];
 
-const CarLoanBanner: React.FC = () => (
-  <div className="bg-yellow-100 p-6 rounded-lg flex justify-between items-center">
-    <div>
-      <h3 className="text-xl font-bold">Apply for a car loan!</h3>
-      <p>This is a sample of a generated text</p>
-      <button className="mt-4 px-4 py-2 bg-blue-900 text-white rounded">
-        Discover More
-      </button>
-    </div>
-    <img src="/desk-illustration.svg" alt="Desk" className="w-1/3" />
-  </div>
-);
 
-const AchievementCard: React.FC<AchievementCardProps> = ({
-  title,
-  value,
-  icon,
-  color,
-}) => (
-  <div className={`p-6 rounded-lg ${color} text-white`}>
-    <h3>{title}</h3>
-    <div className="text-3xl font-bold mt-2">{value}</div>
-    <div className="mt-4">{icon}</div>
-  </div>
-);
+const EarnCards = [
+  {
+    backgroundColor: "#0F2837",
+    message: "You have earned",
+    highlightText: "Badges!",
+    highlightNumber: "20",
+    secondaryText: "Redeem and claim your rewards!",
+    footerText: "Hooray! Way to go Mohammed!",
+    imagePath: "peopleRushing.png",
+  },
+  {
+    backgroundColor: "#6E1946",
+    message: "You have earned",
+    highlightText: "Points!",
+    highlightNumber: "1500",
+    secondaryText: "Redeem and claim your rewards!",
+    footerText: "Redeem and claim your rewards!",
+    imagePath: "oldMan.png",
+  },
+];
+const Home: React.FC = () => (
+  <>
+    <section className="grid grid-cols-4 gap-6 mb-8">
+      {HeroCards.map((card) => (
+        <HeroCard {...card} />
+      ))}
+    </section>
 
-const CarRecommendation: React.FC<CarRecommendationProps> = ({
-  image,
-  name,
-  stats,
-  recommendPercent,
-}) => (
-  <div className="bg-gray-100 p-4 rounded-lg">
-    <div className="mb-2">{recommendPercent}% Recommend</div>
-    <img src={image} alt={name} className="w-full mb-4" />
-    <h3 className="font-bold">{name}</h3>
-    <div className="flex justify-between mt-2 text-sm text-gray-600">
-      {stats.map((stat, index) => (
-        <span key={index}>{stat}</span>
+    <section className="mx-5 flex mobile:flex-col lg:flex-row justify-center mobile:p-2 lg:p-4 mobile:gap-4 lg:gap-0">
+      <div className="lg:w-[540px] lg:h-[222px] mobile:p-4 bg-[#FFE0BA] flex  lg:flex-row justify-between items-center lg:px-4  rounded-md">
+        <div>
+          <h4 className="text-[24px] text-[#0F2837] font-[ABeeZee]">
+            Apply for a car loan !
+          </h4>
+          <span className="text-[16px] text-[#0F2837] ">
+            This is a sample of a generated <br />
+            text
+          </span>
+          <button className="bg-[#0F2837] h-[38px] w-[126px] mt-2 rounded-md text-[12px] text-[#FFFFFF] flex justify-center items-center">
+            Discover More
+          </button>
+        </div>
+        <div>
+          <img
+            className="h-[185.83px] w-[226.11px]"
+            src="./desk.png"
+            alt="desk"
+          />
+        </div>
+      </div>
+      <div className="flex  lg:mx-2">
+        {EarnCards.map((card) => (
+          <SecondSectionCardAtDashbord {...card} />
+        ))}
+      </div>
+    </section>
+
+    <div className="grid grid-cols-3 gap-6">
+      {RecommendedCars.map((card) => (
+        <RecommendedCar {...card} />
       ))}
     </div>
-  </div>
-);
-
-const Home: React.FC = () => (
-
-  <>
-        <section className="grid grid-cols-4 gap-6 mb-8">
-          {HeroCards.map((card) => (
-            <HeroCard {...card} />
-          ))}
-        </section>
-        <div className="grid grid-cols-3 gap-6 mb-8">
-          <div className="col-span-2">
-            <CarLoanBanner />
-          </div>
-          <AchievementCard
-            title="You have earned"
-            value="20 Badges!"
-            color="bg-blue-900"
-            icon={<span>🏅</span>}
-          />
-          <AchievementCard
-            title="You have earned"
-            value="1500 Points!"
-            color="bg-purple-900"
-            icon={<span>⏱</span>}
-          />
-        </div>
-        <div className="grid grid-cols-3 gap-6">
-       
-            {RecommendedCars.map((card) => (
-            <RecommendedCar {...card} />
-          ))}
-        </div>
-        </>
-
+  </>
 );
 
 export default Home;
