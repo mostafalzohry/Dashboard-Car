@@ -89,7 +89,7 @@ const EarnCards = [
 
 
 const Home: React.FC = () => (
-  <>
+  <div className="ml-10">
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       {HeroCards.map((card) => (
         <HeroCard key={card.title} {...card} />
@@ -129,7 +129,7 @@ const Home: React.FC = () => (
         <RecommendedCar key={card.text} {...card} />
       ))}
     </section>
-  </>
+  </div>
 );
 
 

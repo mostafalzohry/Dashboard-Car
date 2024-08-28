@@ -1,5 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const SideNavbar: React.FC = () => {
   const currentPath = usePathname();
@@ -15,50 +16,41 @@ const SideNavbar: React.FC = () => {
 
           <nav className="flex flex-col justify-between flex-grow mb-3">
             <div>
-              <div
-                className={`flex mt-11 p-1 rounded-md cursor-pointer ${
-                  currentPath === "/" ? "bg-[#F3F5F8]" : ""
-                }`}
-              >
-                <img
-                  className="h-[20px] w-[20px] lg:h-[24px] lg:w-[24px]"
-                  src="./dashboard icon.svg"
-                  alt="dashboard icon"
-                />
-                <span className="text-[#5F6165] text-[14px] lg:text-[16px] font-[500] mx-1">
-                  dashboard
-                </span>
-              </div>
+              <Link href="/">
+                <div
+                  className={`flex mt-11 p-1 rounded-md cursor-pointer ${
+                    currentPath === "/" ? "bg-[#F3F5F8]" : ""
+                  }`}
+                >
+                  <img
+                    className="h-[20px] w-[20px] lg:h-[24px] lg:w-[24px]"
+                    src="./dashboard icon.svg"
+                    alt="dashboard icon"
+                  />
+                  <span className="text-[#5F6165] text-[14px] lg:text-[16px] font-[500] mx-1">
+                    dashboard
+                  </span>
+                </div>
+              </Link>
 
-              <div
-                className={`flex mt-2 p-1 rounded-md cursor-pointer ${
-                  currentPath === "/cars" ? "bg-[#F3F5F8]" : ""
-                }`}
-              >
-                <img
-                  className="h-[20px] w-[20px] lg:h-[24px] lg:w-[24px]"
-                  src="./cars icon.svg"
-                  alt="cars icon"
-                />
-                <span className="text-[#5F6165] text-[14px] lg:text-[16px] font-[500] mx-1">
-                  cars
-                </span>
-              </div>
+              <Link href="/cars">
+                <div
+                  className={`flex mt-2 p-1 rounded-md cursor-pointer ${
+                    currentPath === "/cars" ? "bg-[#F3F5F8]" : ""
+                  }`}
+                >
+                  <img
+                    className="h-[20px] w-[20px] lg:h-[24px] lg:w-[24px]"
+                    src="./cars icon.svg"
+                    alt="cars icon"
+                  />
+                  <span className="text-[#5F6165] text-[14px] lg:text-[16px] font-[500] mx-1">
+                    cars
+                  </span>
+                </div>
+              </Link>
 
-              <div
-                className={`flex mt-2 p-1 rounded-md cursor-pointer ${
-                  currentPath === "/test" ? "bg-[#F3F5F8]" : ""
-                }`}
-              >
-                <img
-                  className="h-[20px] w-[20px] lg:h-[24px] lg:w-[24px]"
-                  src="./cars icon.svg"
-                  alt="test icon"
-                />
-                <span className="text-[#5F6165] text-[14px] lg:text-[16px] font-[500] mx-1">
-                  test
-                </span>
-              </div>
+            
             </div>
 
             <div>
