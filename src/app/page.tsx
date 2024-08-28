@@ -1,5 +1,6 @@
 import HeroCard from "@/Components/HeroCard";
 import Navbar from "@/Components/NavBar";
+import RecommendedCar from "@/Components/RecommendedCar";
 import SideNavbar from "@/Components/SideNavBar";
 import React from "react";
 
@@ -50,6 +51,34 @@ const HeroCards = [
     iconPath: "tiericon.svg",
     percent: 25,
     backgroundColor: "#FFFFFF",
+  },
+];
+const RecommendedCars = [
+  {
+    backgroundColor: "#E1DFA4",
+    title: "64% Recommend",
+    imgCarPath: "./MiniCooper.png",
+    text: "Mini Cooper",
+    kiloMeter: "132K",
+    kiloMeterByHour: "$32/h",
+  },
+  {
+    backgroundColor: "#E3ECF1",
+    title: "74% Recommend",
+    imgCarPath:
+      "./Porsche.png",
+    text: "Porsche 911 Carrera",
+    kiloMeter: "130K",
+    kiloMeterByHour: "$28/h",
+  },
+  {
+    backgroundColor: "#F4E3E5",
+    title: "74% Recommend",
+    imgCarPath:
+      "./Porsche2.png",
+    text: "Porsche 911 Carrera",
+    kiloMeter: "130K",
+    kiloMeterByHour: "$28/h",
   },
 ];
 
@@ -123,24 +152,10 @@ const Home: React.FC = () => (
           />
         </div>
         <div className="grid grid-cols-3 gap-6">
-          <CarRecommendation
-            image="/mini-cooper.jpg"
-            name="Mini Cooper"
-            stats={["132K ", "Manual", "$32/h"]}
-            recommendPercent={64}
-          />
-          <CarRecommendation
-            image="/porsche-911.jpg"
-            name="Porsche 911 Carrera"
-            stats={["130K ", "Manual", "$28/h"]}
-            recommendPercent={74}
-          />
-          <CarRecommendation
-            image="/porsche-911-red.jpg"
-            name="Porsche 911 Carrera"
-            stats={["130K ", "Manual", "$28/h"]}
-            recommendPercent={74}
-          />
+       
+            {RecommendedCars.map((card) => (
+            <RecommendedCar {...card} />
+          ))}
         </div>
         </>
 

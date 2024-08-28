@@ -65,7 +65,7 @@ const SideNavbar: React.FC = () => {
               <div className="flex mt-11 p-1 rounded-md cursor-pointer">
                 <img
                   className="h-[20px] w-[20px]"
-                  src="./setting icon.svg"
+                  src="./settingicon.svg"
                   alt="setting icon"
                 />
                 <span className="text-[#5F6165] text-[14px] font-[500] mx-1">
@@ -76,7 +76,7 @@ const SideNavbar: React.FC = () => {
               <div className="flex mt-2 p-1 rounded-md cursor-pointer">
                 <img
                   className="h-[20px] w-[20px]"
-                  src="./log out icon.svg"
+                  src="./logouticon.svg"
                   alt="log out icon"
                 />
                 <span className="text-[#5F6165] text-[14px] font-[500] mx-1">
