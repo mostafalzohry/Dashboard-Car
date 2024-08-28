@@ -43,7 +43,7 @@ const CarCard: React.FC<Icar> = ({
         <div className="flex gap-3 items-center">
           <div className="flex gap-1">
             <img
-              src="carcardicon.svg"
+              src="carcard.svg"
               alt="icon for card "
               className="h-[20px] w-[20px]"
             />

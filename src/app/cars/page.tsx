@@ -119,8 +119,9 @@ const Cars = () => {
       <header>
         <h1 className="my-4 text-[#242731] text-[30px] font-[700]">Booking</h1>
       </header>
-      <nav className="h-[44px] flex justify-between mt-10">
-        <div className="flex gap-[23px] flex-wrap">
+
+      <nav className="mt-10 flex flex-col lg:flex-row justify-between items-center">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-[23px]">
           <div className="relative">
             <select
               value={selectedMake}
@@ -174,7 +175,8 @@ const Cars = () => {
             Clear Filter
           </button>
         </div>
-        <div className="flex gap-[16px] items-start">
+
+        <div className="flex gap-[16px] items-center mt-4 lg:mt-0">
           <div className="bg-[#FFFFFF] w-[44px] h-[44px] rounded-full flex justify-center items-center">
             <img
               src="./filter2 icon.svg"
@@ -189,7 +191,8 @@ const Cars = () => {
           />
         </div>
       </nav>
-      <section className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:gap-6 mobile:mt-20 lg:mt-16 mobile:items-center">
+
+      <section className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:gap-6 mt-16">
         {currentCars.length > 0 ? (
           <>
             {currentCars.map((car) => (
@@ -200,6 +203,7 @@ const Cars = () => {
           "No car found"
         )}
       </section>
+
       <div className="flex justify-center mt-5">
         <nav className="flex gap-2">
           {Array.from({ length: totalPages }, (_, index) => (

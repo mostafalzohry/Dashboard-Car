@@ -18,16 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="flex">
-          <SideNavbar />
-      
-          <div className="flex-1 ml-64"> 
-            <Navbar />
-            <main className="p-8">{children}</main>
-          </div>
+    <body className={inter.className}>
+      <div className="flex flex-col sm:flex-row">
+        <SideNavbar />
+        <div className="flex-1 w-full sm:ml-50 md:ml-64 transition-all duration-300">
+          <Navbar />
+          <main className="p-4 sm:p-6 md:p-8">{children}</main>
         </div>
-      </body>
-    </html>
+      </div>
+    </body>
+  </html>
   );
 }
