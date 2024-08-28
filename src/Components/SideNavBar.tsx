@@ -5,7 +5,7 @@ const SideNavbar: React.FC = () => {
   const currentPath = usePathname();
 
   return (
-    <div className="w-64 h-screen bg-white border-r">
+    <div className="fixed w-64 h-screen bg-white border-r">
       <div className="min-w-[248px] border-r-2">
         <div className="w-[174px] m-auto h-screen flex flex-col">
           <header className="flex items-center justify-center">
@@ -90,5 +90,6 @@ const SideNavbar: React.FC = () => {
     </div>
   );
 };
+
 
 export default SideNavbar;
