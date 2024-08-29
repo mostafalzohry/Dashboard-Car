@@ -17,11 +17,10 @@ const Navbar: React.FC = () => {
               <div className="relative w-full">
                 <div className="absolute inset-y-2 start-0 flex items-center ps-3 pointer-events-none">
                   <img
-                    src="./searchicon.svg"
+                    src="./icons/searchicon.svg"
                     alt="search icon"
                     className="h-[20px] w-[20px]"
                   />
-                  <span className="mx-1 mb-1 text-yellow-300 font-bold">|</span>
                 </div>
                 <input
                   type="text"
@@ -44,13 +43,13 @@ const Navbar: React.FC = () => {
             </select>
             <button type="button" className="flex items-center gap-2 lg:gap-10">
               <img
-                src="./notification.svg"
+                src="./icons/notification.svg"
                 alt="notification icon"
                 className="h-[24px] w-[19.2px]"
               />
               <div className="w-[48px] h-[48px] rounded-full overflow-hidden">
                 <img
-                  src="./profile.png"
+                  src="./images/profile.png"
                   alt="profile img"
                   className="w-full h-full object-cover"
                 />

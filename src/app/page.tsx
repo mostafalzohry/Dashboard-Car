@@ -8,7 +8,7 @@ const HeroCards = [
     progressColor: "#FFFFFF",
     textColor: "#FFFFFF",
     title: "Energy",
-    iconPath: "energyicon.svg",
+    iconPath: "icons/energyicon.svg",
     percent: 70,
     backgroundColor:
       "linear-gradient(#A162F7, #A162F7), linear-gradient(80deg, white 40%, lightgrey 30%)",
@@ -17,7 +17,7 @@ const HeroCards = [
     progressColor: "#FF7E86",
     textColor: "#242731",
     title: "Range",
-    iconPath: "rangicon.svg",
+    iconPath: "icons/rangicon.svg",
     percent: 15,
     backgroundColor: "#FFFFFF",
   },
@@ -25,7 +25,7 @@ const HeroCards = [
     progressColor: "#A162F7",
     textColor: "#242731",
     title: "Break fluid",
-    iconPath: "breakicon.svg",
+    iconPath: "icons/breakicon.svg",
     percent: 9,
     backgroundColor: "#FFFFFF",
   },
@@ -33,7 +33,7 @@ const HeroCards = [
     progressColor: "#F6CC0D",
     textColor: "#242731",
     title: "Tire Wear",
-    iconPath: "tiericon.svg",
+    iconPath: "icons/tiericon.svg",
     percent: 25,
     backgroundColor: "#FFFFFF",
   },
@@ -42,7 +42,7 @@ const RecommendedCars = [
   {
     backgroundColor: "#E1DFA4",
     title: "64% Recommend",
-    imgCarPath: "./MiniCooper.png",
+    imgCarPath: "./images/MiniCooper.png",
     text: "Mini Cooper",
     kiloMeter: "132K",
     kiloMeterByHour: "$32/h",
@@ -50,7 +50,7 @@ const RecommendedCars = [
   {
     backgroundColor: "#E3ECF1",
     title: "74% Recommend",
-    imgCarPath: "./Porsche.png",
+    imgCarPath: "./images/Porsche.png",
     text: "Porsche 911 Carrera",
     kiloMeter: "130K",
     kiloMeterByHour: "$28/h",
@@ -58,7 +58,7 @@ const RecommendedCars = [
   {
     backgroundColor: "#F4E3E5",
     title: "74% Recommend",
-    imgCarPath: "./Porsche2.png",
+    imgCarPath: "./images/Porsche2.png",
     text: "Porsche 911 Carrera",
     kiloMeter: "130K",
     kiloMeterByHour: "$28/h",
@@ -74,7 +74,7 @@ const EarnCards = [
     highlightNumber: "20",
     secondaryText: "Redeem and claim your rewards!",
     footerText: "Hooray! Way to go Mohammed!",
-    imagePath: "peopleRushing.png",
+    imagePath: "images/peopleRushing.png",
   },
   {
     backgroundColor: "#6E1946",
@@ -83,7 +83,7 @@ const EarnCards = [
     highlightNumber: "1500",
     secondaryText: "Redeem and claim your rewards!",
     footerText: "Redeem and claim your rewards!",
-    imagePath: "oldMan.png",
+    imagePath: "images/oldMan.png",
   },
 ];
 
@@ -112,7 +112,7 @@ const Home: React.FC = () => (
         <div>
           <img
             className="h-[150px] lg:h-[185.83px] w-[auto] lg:w-[226.11px]"
-            src="./desk.png"
+            src="./images/desk.png"
             alt="desk"
           />
         </div>

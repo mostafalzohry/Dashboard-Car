@@ -22,7 +22,7 @@ const RecommendedCar: React.FC<IRecommendedCar> = ({
     >
       <div className="flex gap-2 items-center">
         <img
-          src="./icon section card.svg"
+          src="./icons/icon section card.svg"
           alt="icon for card at section3 dashbrd"
           className="h-[16px] lg:h-[20.2px] w-[16px] lg:w-[20.1px]"
         />
@@ -39,18 +39,18 @@ const RecommendedCar: React.FC<IRecommendedCar> = ({
       <footer className="flex justify-between text-[#72767C] mt-1">
         <div className="flex gap-2 lg:gap-3 items-center">
           <img
-            src="./reloadicon.svg"
+            src="./icons/reloadicon.svg"
             alt="icon for card"
             className="h-[14px] lg:h-[16.67px] w-[14px] lg:w-[16.67px]"
           />
           <span className="text-[12px] lg:text-[14px] font-[200]">{kiloMeter}</span>
           <img
-            src="./settingcardicon.svg"
+            src="./icons/settingcardicon.svg"
             alt="icon for card"
             className="h-[11px] lg:h-[13.34px] w-[11px] lg:w-[13.36px]"
           />
           <img
-            src="./speedicon.svg"
+            src="./icons/speedicon.svg"
             alt="icon for card"
             className="h-[11px] lg:h-[13.33px] w-[8px] lg:w-[10.63px]"
           />

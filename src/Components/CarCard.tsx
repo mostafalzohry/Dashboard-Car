@@ -27,7 +27,7 @@ const CarCard: React.FC<Icar> = ({
         <span className="text-[18px] text-[#242731] font-[700]">{title}</span>
 
         <img
-          src={` ${isAtCart ? "./atcarticon.svg" : "./love.svg"}`}
+          src={` ${isAtCart ? "./icons/atcarticon.svg" : "./icons/love.svg"}`}
           alt="wish list"
           className={`w-[24px] h-[love.svg]`}
         />
@@ -43,7 +43,7 @@ const CarCard: React.FC<Icar> = ({
         <div className="flex gap-3 items-center">
           <div className="flex gap-1">
             <img
-              src="carcard.svg"
+              src="./icons/carcard.svg"
               alt="icon for card "
               className="h-[20px] w-[20px]"
             />
@@ -51,7 +51,7 @@ const CarCard: React.FC<Icar> = ({
           </div>
           <div className="flex gap-1">
             <img
-              src="./reloadicon.svg"
+              src="./icons/reloadicon.svg"
               alt="icon for card"
               className="h-[20px] w-[20px]"
             />

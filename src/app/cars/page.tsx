@@ -4,6 +4,17 @@ import React, { useState, useEffect } from "react";
 import CarCard, { Icar } from "@/Components/CarCard";
 import { useGetCarsQuery } from "../apiSlice";
 
+
+const carImages = [
+  "images/car1.png",
+  "images/car2.png",
+  "images/car3.png",
+  "images/car4.png",
+  "images/car5.png",
+  "images/car6.png",
+];
+
+
 const Cars = () => {
   const { data: carsData, error, isLoading } = useGetCarsQuery();
   const [cars, setCars] = useState<Icar[]>([]);
@@ -16,30 +27,29 @@ const Cars = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [carsPerPage] = useState<number>(9);
 
-  useEffect(() => {
-    if (carsData) {
-      const formattedCars = carsData.map((car) => ({
-        title: `${car.make} ${car.model}`,
-        isAtCart: false,
-        drive: car.transmission,
-        type: car.fuelType,
-        imgCarPath: car.image,
-        numOfUser: car.owners.toString(),
-        price: `$${car.price}`,
-        status: car.year > 2020 ? "new" : "old",
-      }));
-      setCars(formattedCars);
-      setOriginalCars(formattedCars);
+ 
+ 
 
-      const uniqueMakes = Array.from(new Set(carsData.map((car) => car.make)));
-      setMakes(uniqueMakes);
 
-      const uniqueTransmissions = Array.from(
-        new Set(carsData.map((car) => car.transmission))
-      );
-      setTransmissions(uniqueTransmissions);
-    }
-  }, [carsData]);
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const clearFilter = () => {
+    setSelectedMake("");
+    setSelectedTransmission("");
+    setSearchTerm("");
+    setCars(originalCars);
+    setCurrentPage(1);
+  };
+
+  const indexOfLastCar = currentPage * carsPerPage;
+  const indexOfFirstCar = indexOfLastCar - carsPerPage;
+  const currentCars = cars.slice(indexOfFirstCar, indexOfLastCar);
+  const totalPages = Math.ceil(cars.length / carsPerPage);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
 
   const applyFilters = () => {
     let filteredCars = originalCars;
@@ -68,29 +78,39 @@ const Cars = () => {
     setCurrentPage(1);
   };
 
+
+
   useEffect(() => {
     applyFilters();
   }, [selectedMake, selectedTransmission, searchTerm]);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
+  
 
-  const clearFilter = () => {
-    setSelectedMake("");
-    setSelectedTransmission("");
-    setSearchTerm("");
-    setCars(originalCars);
-    setCurrentPage(1);
-  };
+  useEffect(() => {
+    if (carsData) {
+      const formattedCars = carsData.map((car,index) => ({
+        title: `${car.make} ${car.model}`,
+        isAtCart: false,
+        drive: car.transmission,
+        type: car.fuelType,
+      imgCarPath: carImages[index % carImages.length],
+        numOfUser: car.owners.toString(),
+        price: `$${car.price}`,
+        status: car.year > 2020 ? "new" : "old",
+      }));
+      setCars(formattedCars);
+      setOriginalCars(formattedCars);
 
-  const indexOfLastCar = currentPage * carsPerPage;
-  const indexOfFirstCar = indexOfLastCar - carsPerPage;
-  const currentCars = cars.slice(indexOfFirstCar, indexOfLastCar);
-  const totalPages = Math.ceil(cars.length / carsPerPage);
+      const uniqueMakes = Array.from(new Set(carsData.map((car) => car.make)));
+      setMakes(uniqueMakes);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
+      const uniqueTransmissions = Array.from(
+        new Set(carsData.map((car) => car.transmission))
+      );
+      setTransmissions(uniqueTransmissions);
+    }
+  }, [carsData]);
+  
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Failed to fetch cars</p>;
 
@@ -167,13 +187,13 @@ const Cars = () => {
         <div className="flex gap-[16px] items-center mt-4 lg:mt-0">
           <div className="bg-[#FFFFFF] w-[44px] h-[44px] rounded-full flex justify-center items-center">
             <img
-              src="./filter2 icon.svg"
+              src="./icons/filter2 icon.svg"
               alt="icon filter 1"
               className="rounded-full mt-1"
             />
           </div>
           <img
-            src="./filter.svg"
+            src="./icons/filter.svg"
             alt="icon filter 1"
             className="w-[44px] h-[44px] rounded-full flex justify-center items-center"
           />
