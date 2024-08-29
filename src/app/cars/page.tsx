@@ -1,26 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import CarCard, { Icar } from "@/Components/CarCard";
-
-interface IApiCar {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  color: string;
-  mileage: number;
-  price: number;
-  fuelType: string;
-  transmission: string;
-  engine: string;
-  horsepower: number;
-  features: string[];
-  owners: number;
-  image: string;
-}
+import { useGetCarsQuery } from "../apiSlice";
 
 const Cars = () => {
+  const { data: carsData, error, isLoading } = useGetCarsQuery();
   const [cars, setCars] = useState<Icar[]>([]);
   const [originalCars, setOriginalCars] = useState<Icar[]>([]);
   const [makes, setMakes] = useState<string[]>([]);
@@ -30,15 +14,10 @@ const Cars = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [carsPerPage] = useState<number>(9);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
-  const fetchCars = async () => {
-    try {
-      const response = await axios.get<IApiCar[]>(
-        "https://freetestapi.com/api/v1/cars"
-      );
-      const carsData: Icar[] = response.data.map((car) => ({
+  useEffect(() => {
+    if (carsData) {
+      const formattedCars = carsData.map((car) => ({
         title: `${car.make} ${car.model}`,
         isAtCart: false,
         drive: car.transmission,
@@ -48,25 +27,18 @@ const Cars = () => {
         price: `$${car.price}`,
         status: car.year > 2020 ? "new" : "old",
       }));
+      setCars(formattedCars);
+      setOriginalCars(formattedCars);
 
-      setCars(carsData);
-      setOriginalCars(carsData);
-
-      const uniqueMakes = Array.from(
-        new Set(response.data.map((car) => car.make))
-      );
+      const uniqueMakes = Array.from(new Set(carsData.map((car) => car.make)));
       setMakes(uniqueMakes);
 
       const uniqueTransmissions = Array.from(
-        new Set(response.data.map((car) => car.transmission))
+        new Set(carsData.map((car) => car.transmission))
       );
       setTransmissions(uniqueTransmissions);
-    } catch (error) {
-      setError("Failed to fetch cars");
-    } finally {
-      setLoading(false);
     }
-  };
+  }, [carsData]);
 
   const filterCarsByMake = (make: string) => {
     if (make === "") {
@@ -121,20 +93,14 @@ const Cars = () => {
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  useEffect(() => {
-    fetchCars();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Failed to fetch cars</p>;
 
   return (
     <div className="ml-10">
       <header>
         <h1 className="my-4 text-[#242731] text-[30px] font-[700]">Booking</h1>
       </header>
-
-  
 
       <nav className="mt-10 flex flex-col lg:flex-row justify-between items-center">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-[23px]">
@@ -161,7 +127,7 @@ const Cars = () => {
               </svg>
             </div>
           </div>
-      
+
           <div className="relative">
             <select
               value={selectedTransmission}
@@ -215,6 +181,7 @@ const Cars = () => {
           />
         </div>
       </nav>
+
       <section className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:gap-6 mt-16">
         {currentCars.length > 0 ? (
           <>
