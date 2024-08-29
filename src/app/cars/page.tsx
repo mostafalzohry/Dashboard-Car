@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import CarCard, { Icar } from "@/Components/CarCard";
 import { useGetCarsQuery } from "../apiSlice";
@@ -40,42 +41,39 @@ const Cars = () => {
     }
   }, [carsData]);
 
-  const filterCarsByMake = (make: string) => {
-    if (make === "") {
-      setCars(originalCars);
-    } else {
-      const filteredArray = originalCars.filter((car) =>
-        car.title.includes(make)
-      );
-      setCars(filteredArray);
-    }
-    setSelectedMake(make);
-    setCurrentPage(1);
-  };
+  const applyFilters = () => {
+    let filteredCars = originalCars;
 
-  const filterCarsByTransmission = (transmission: string) => {
-    if (transmission === "") {
-      setCars(originalCars);
-    } else {
-      const filteredArray = originalCars.filter(
-        (car) => car.drive === transmission
+    if (selectedMake) {
+      filteredCars = filteredCars.filter((car) =>
+        car.title.includes(selectedMake)
       );
-      setCars(filteredArray);
     }
-    setSelectedTransmission(transmission);
-    setCurrentPage(1);
-  };
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = event.target.value.toLowerCase();
-    setSearchTerm(searchValue);
-    const filteredCars = originalCars.filter(
-      (car) =>
-        car.title.toLowerCase().includes(searchValue) ||
-        car.type.toLowerCase().includes(searchValue)
-    );
+    if (selectedTransmission) {
+      filteredCars = filteredCars.filter(
+        (car) => car.drive === selectedTransmission
+      );
+    }
+
+    if (searchTerm) {
+      filteredCars = filteredCars.filter(
+        (car) =>
+          car.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          car.type.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
     setCars(filteredCars);
     setCurrentPage(1);
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, [selectedMake, selectedTransmission, searchTerm]);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
 
   const clearFilter = () => {
@@ -107,7 +105,7 @@ const Cars = () => {
           <div className="relative">
             <select
               value={selectedMake}
-              onChange={(e) => filterCarsByMake(e.target.value)}
+              onChange={(e) => setSelectedMake(e.target.value)}
               className="bg-white cursor-pointer w-[220px] h-[48px] rounded-full px-4 py-2 appearance-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
             >
               <option value="">Select Make</option>
@@ -131,7 +129,7 @@ const Cars = () => {
           <div className="relative">
             <select
               value={selectedTransmission}
-              onChange={(e) => filterCarsByTransmission(e.target.value)}
+              onChange={(e) => setSelectedTransmission(e.target.value)}
               className="bg-white cursor-pointer w-[220px] h-[48px] rounded-full px-4 py-2 appearance-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
             >
               <option value="">Select Transmission</option>
